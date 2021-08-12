@@ -369,10 +369,15 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                    </div>
+                    @endif
 
     <a href="{{route('blog.create')}}" class="btn btn-md btn-success nb-3">Tambah Blog</a>
 
-                 
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -383,7 +388,7 @@
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
-                    @foreach ($blogs as $blog)
+                    @forelse ($blogs as $blog)
                     <tbody>
 
                         <tr class="bg-light">
@@ -401,11 +406,13 @@
                                 <button type="submit" class="btn btn-sm btn-danger">HAPUS</button> 
                                 </form>
                             </td>
+                            @empty
+                                <div class="alert alert-danger"> Data Belum Tersedia</div>
                         
                         </tr>
-                        
+                            
                     </tbody>
-                    @endforeach
+                    @endforelse
                   </table>
                 <!-- /.container-fluid -->
                 </div>

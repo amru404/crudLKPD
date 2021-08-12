@@ -47,7 +47,8 @@ class BlogController extends Controller
             'konten' => 'required'
         ]);
         Blog::create($request->all());
-        return redirect('/blog');
+        return redirect()->route('blog.index')
+        ->with('success','Data Berhasil Di tambahkan!');
         }
 
     /**
@@ -89,7 +90,8 @@ class BlogController extends Controller
 
         $blogs->save();
 
-        return redirect('/blog');
+        return redirect()->route('blog.index')
+        ->with('success','Data Berhasil Di update!');
     }
 
     /**
@@ -103,6 +105,7 @@ class BlogController extends Controller
         //
         $blogs = Blog::find($id);
         $blogs->delete();
-        return redirect('/blog');
+        return redirect('/blog')
+        ->with('success','Data Berhasil Di hapus!');
     }
 }
